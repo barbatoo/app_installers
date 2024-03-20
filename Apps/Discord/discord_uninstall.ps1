@@ -2,8 +2,17 @@
 $LoggedUser = Get-WmiObject -Class Win32_ComputerSystem | Select-Object -ExpandProperty UserName
 $UserName = $LoggedUser -replace '.*\\'
 
-# Encerra todos os processos relacionados ao Discord
-Get-Process "discord" | ForEach-Object { $_.Kill() }
+# Verifica se o processo Slack está em execução
+$discordProcesses = Get-Process "discord" -ErrorAction SilentlyContinue
+
+if ($discordProcesses) {
+    # Se o processo Discord está em execução, encerra o processo
+    Get-Process "discord" | ForEach-Object { $_.Kill() }
+    Write-Host "Processo do Discord encerrado com sucesso."
+} else {
+    # Se nenhum processo Slack está em execução, exibe uma mensagem
+    Write-Host "Nenhum processo do Discord em execução."
+}
 
 # Espera alguns segundos para garantir que todos os processos foram encerrados
 Start-Sleep -Seconds 5
