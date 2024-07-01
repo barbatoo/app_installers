@@ -2,16 +2,19 @@
 
 ## Created by Gabriel Barbato to reinstall Zoom - https://github.com/barbatoo
 
+ZOOM_PKG_URL="https://zoom.us/client/6.1.1.36333/zoomusInstallerFull.pkg?archType=arm64&amp_device_id=34d38e8b-35b2-4edc-b60b-6801962ed09e"
+ZOOM_PKG_PATH="/tmp/zoomusInstallerFull.pkg"
+
 killall zoom.us   
 
 rm -rf "/Applications/zoom.us.app"
     echo "//////////////////// ZOOM DESINSTALADO, INICIANDO INSTALAÇÃO... ////////////////////"
 
-  curl -o /tmp/zoomusInstallerFull.pkg "https://cdn.zoom.us/prod/5.14.2.17213/zoomusInstallerFull.pkg"
+curl -L -o "$ZOOM_PKG_PATH" "$ZOOM_PKG_URL"
 
-  sudo installer -pkg /tmp/zoomusInstallerFull.pkg -target /
+sudo installer -pkg "$ZOOM_PKG_PATH" -target /
 
-  rm /tmp/zoomusInstallerFull.pkg
+rm -rf "$ZOOM_PKG_PATH"
 
 echo "Aguarde uns instantes..."
 sleep 15
