@@ -6,11 +6,20 @@ SLACK_DMG_URL="https://slack.com/api/desktop.latestRelease?arch=universal&varian
 SLACK_DMG_PATH="/tmp/Slack.dmg"
 
 ## Encerra o Slac se estiver aberto
-killall Slack
+if pgrep "Slack" > /dev/null; then
+    sudo killall Slack
+    echo "Processo do Slack encerrado, inciciando desisntalação..."
+else
+    echo "Não há processo do Slack aberto, inciando verificação do Slack..."
+fi
 
 # Desinstala o Slack
-rm -rf /Applications/Slack.app
-echo "Slack desinstalado, iniciando reinstalação..."
+if [ -d "/Applications/Slack.app" ]; then
+    sudo rm -rf /Applications/Slack.app
+    echo "Slack desinstalado, iniciando reinstalação..."
+else
+    echo "Slack não está instalado, inciando instalação..."
+fi
 
 # Baixa a versão mais recente do Slack
 curl -L -o "$SLACK_DMG_PATH" "$SLACK_DMG_URL"
