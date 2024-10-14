@@ -2,7 +2,6 @@
 
 vscode_url='https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal'
 vscode_ZIP_PATH="/tmp/VSCode-darwin-universal.zip"
-curUser=$(/usr/bin/stat -f%Su /dev/console)
 
 # verify if VSCode is already installed
 if [ -d "/Applications/Visual Studio Code.app" ]; then
@@ -14,7 +13,7 @@ curl -L -o -s "$vscode_ZIP_PATH" "$vscode_url"
 
 unzip $vscode_ZIP_PATH -d /tmp
 
-mv mv /tmp/Visual\ Studio\ Code.app /Users/$curUser/Applications/
+mv /tmp/Visual\ Studio\ Code.app /Applications/
 
 rm -rf "$vscode_ZIP_PATH"
 
