@@ -8,9 +8,9 @@ SLACK_DMG_PATH="/tmp/Slack.dmg"
 ## Encerra o Slac se estiver aberto
 if pgrep "Slack" > /dev/null; then
     sudo killall Slack
-    echo "Processo do Slack encerrado, inciciando desisntalação..."
+    echo "Processo do Slack encerrado, iniciando desinstalação..."
 else
-    echo "Não há processo do Slack aberto, inciando verificação do Slack..."
+    echo "Não há processo do Slack aberto, iniciando verificação do Slack..."
 fi
 
 # Desinstala o Slack
@@ -18,7 +18,7 @@ if [ -d "/Applications/Slack.app" ]; then
     sudo rm -rf /Applications/Slack.app
     echo "Slack desinstalado, iniciando reinstalação..."
 else
-    echo "Slack não está instalado, inciando instalação..."
+    echo "Slack não está instalado, iniciando instalação..."
 fi
 
 # Baixa a versão mais recente do Slack
